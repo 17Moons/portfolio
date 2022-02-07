@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import AnimatedText from "./AnimatedText";
-import "./styles.css";
-
+import "./land_styles.css";
+import Homepage from "./homepage.jsx";
+import { Link } from 'react-router-dom';
 export default function Landing() {
   const [replay, setReplay] = useState(true);
-  // Placeholder text data, as if from API
   const placeholderText = [
-    { type: "heading1", text: "Hello" }
+    { type: "heading1", text: "Hello !" }
   ];
 
   const container = {
@@ -18,30 +18,24 @@ export default function Landing() {
     }
   };
 
-  // Quick and dirt for the example
-  const handleReplay = () => {
-    setReplay(!replay);
-    setTimeout(() => {
-      setReplay(true);
-    }, 600);
-  };
+
 
   return (
+    <div className="lnding">
     <motion.div
       className="App"
       initial="hidden"
-      // animate="visible"
       animate={replay ? "visible" : "hidden"}
       variants={container}
     >
-      <div className="container">
+      <Link to="/Homepage"><div className="container">
         {placeholderText.map((item, index) => {
           return <AnimatedText {...item} key={index} />;
         })}
-      </div>
-      <button onClick={handleReplay}>
-        Replay <span>⟲</span>
-      </button>
+      </div></Link>
+
+
     </motion.div>
+    </div>
   );
 }
